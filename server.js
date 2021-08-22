@@ -2,6 +2,7 @@
 let paragraph = "Given an arbitrary text document written in English, write a program that will generate a concordance, i.e. an alphabetical list of all word occurrences, labeled with word frequencies. Bonus: label each word with the sentence numbers in which each occurrence appeared.";
 
 wordCounter = (paragraph) => {
+	let result = [];
 	let sentenceArr = [];
 	let sentenceStart = 0;
 	for(i=0; i<paragraph.length; i++) { //create array of sentences, each element will be a single  sentence
@@ -10,15 +11,48 @@ wordCounter = (paragraph) => {
 			//will need to deal with other sentence-ending punctuation (regex)
 			sentenceArr.push(paragraph.substring(sentenceStart, i))
 			sentenceStart = i+2;
-			// console.log(sentenceArr
+			// console.log(sentenceArr)
 
 		}
 	}
 
 	for(i=0; i<sentenceArr.length; i++) { //removes in-sentence punctuation, so I'm left with words separated only by spaces
 		let currentString = sentenceArr[i].replace(/[:,]/g,'')
-		console.log(currentString)
+		// console.log(currentString)
+		let arrOfWords = currentString.split(' ') //separate the word in string into an array, using space as delimiter
+		// console.log(arrOfWords) 
+		for(j=0; j<arrOfWords.length; j++) { //loop through arrOfWords
+			let foundInArr = false; //check words first so it doesn't keep adding to the array
+			for(k=0; k<result.length; k++) { //check if word already exists in result
+				if(result[k].word == arrOfWords[j]){ //uptick the counter
+					foundInArr = true;
+					break;
+				}
+			}
+
+			if(foundInArr) {
+	
+				if (i in result[k].sentenceInfo) { //already in that sentence
+					result[k].sentenceInfo[i]++;
+				} else { //not in that sentence
+					result[k].sentenceInfo[i] = 1
+				}
+				
+
+			} else { //create new object in result array, if word doesn't exist in the result
+				result.push(
+					{
+						word: arrOfWords[j],
+						sentenceInfo: 
+						{
+							[i]: 1 //sentence number: counter
+						}
+					}
+				)
+			}
+		}
 	}
+	console.log(result)
 }
 
 wordCounter(paragraph);
