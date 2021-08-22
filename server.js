@@ -17,9 +17,9 @@ wordCounter = (paragraph) => {
 	}
 
 	for(i=0; i<sentenceArr.length; i++) { //removes in-sentence punctuation, so I'm left with words separated only by spaces
-		let currentString = sentenceArr[i].replace(/[:,]/g,'')
+		let currentString = sentenceArr[i].replace(/[:,]/g,'');
 		// console.log(currentString)
-		let arrOfWords = currentString.split(' ') //separate the word in string into an array, using space as delimiter
+		let arrOfWords = currentString.split(' '); //separate the word in string into an array, using space as delimiter
 		// console.log(arrOfWords) 
 		for(j=0; j<arrOfWords.length; j++) { //loop through arrOfWords
 			let foundInArr = false; //check words first so it doesn't keep adding to the array
@@ -31,28 +31,47 @@ wordCounter = (paragraph) => {
 			}
 
 			if(foundInArr) {
-	
-				if (i in result[k].sentenceInfo) { //already in that sentence
-					result[k].sentenceInfo[i]++;
-				} else { //not in that sentence
-					result[k].sentenceInfo[i] = 1
-				}
-				
+				result[k].occurences.push(i+1);				
 
 			} else { //create new object in result array, if word doesn't exist in the result
 				result.push(
 					{
 						word: arrOfWords[j],
-						sentenceInfo: 
-						{
-							[i]: 1 //sentence number: counter
-						}
+						occurences: [i+1]
 					}
 				)
 			}
 		}
 	}
-	console.log(result)
+	result.sort((compare1, compare2) => { //alphabetize the words, has objects so have to tell sort() how to sort
+		if (compare1.word == compare2.word) {
+			return 0;
+		} else if (compare1.word.toUpperCase() < compare2.word.toUpperCase()){
+			return -1;
+		} else {
+			return 1;
+		}
+	})
+	for (i=0; i<result.length; i++) { //final result
+
+		console.log(result[i].word + " " + result[i].occurences.length + ":" + result[i].occurences.join(", "))
+	}
+
+	console.log(result);
 }
 
 wordCounter(paragraph);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
