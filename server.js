@@ -1,5 +1,7 @@
 //test paragraph
-let paragraph = "Given an arbitrary text document written in English, write a program that will generate a concordance, i.e. an alphabetical list of all word occurrences, labeled with word frequencies. Bonus: label each word with the sentence numbers in which each occurrence appeared.";
+// let paragraph = "Given an arbitrary text document written in English, write a program that will generate a concordance, i.e. an alphabetical list of all word occurrences, labeled with word frequencies. Bonus: label each word with the sentence numbers in which each occurrence appeared.";
+
+
 
 wordCounter = (paragraph) => {
 	let result = [];
@@ -57,13 +59,17 @@ wordCounter = (paragraph) => {
 		console.log(result[i].word + " " + result[i].occurences.length + ":" + result[i].occurences.join(", "))
 	}
 
-	console.log(result);
+	// console.log(result);
+	
 }
 
-wordCounter(paragraph);
+// wordCounter(paragraph);
 
 
-
+submitBtn = () => {
+	let userParagraph = document.getElementById("para").value;
+	document.getElementById("submitBtn").addEventListener("click", wordCounter(userParagraph))
+}
 
 
 
