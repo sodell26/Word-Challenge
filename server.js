@@ -60,19 +60,21 @@ wordCounter = (paragraph) => {
 	}
 
 	// console.log(result);
-	
+
 }
 
 // wordCounter(paragraph);
 
 
 submitBtn = () => {
-	let userParagraph = document.getElementById("para").value;
-	document.getElementById("submitBtn").addEventListener("click", wordCounter(userParagraph))
+	let userParagraph = document.getElementById("para").value.trim();
+	document.getElementById("submitBtn").addEventListener("click", wordCounter(userParagraph));
 }
 
 
 
+//to do
+//*add more puntuation
 
 
 
