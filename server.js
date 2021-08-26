@@ -3,7 +3,8 @@
 
 
 
-wordCounter = (paragraph) => {
+wordCounter = (orgParagraph) => {
+	let paragraph = orgParagraph.replace(/[\r\n]+/g,"");	
 	let result = [];
 	let sentenceArr = [];
 	let sentenceStart = 0;
@@ -48,7 +49,7 @@ wordCounter = (paragraph) => {
 	result.sort((compare1, compare2) => { //alphabetize the words, has objects so have to tell sort() how to sort
 		if (compare1.word == compare2.word) {
 			return 0;
-		} else if (compare1.word.toUpperCase() < compare2.word.toUpperCase()){
+		} else if (compare1.word.toLowerCase() < compare2.word.toLowerCase()){
 			return -1;
 		} else {
 			return 1;
@@ -61,7 +62,7 @@ wordCounter = (paragraph) => {
 		let olList = document.getElementById("listOfWords");
 		addListItem = document.createElement("li");
 
-		newListItem = document.createTextNode(result[i].word.toLowerCase() + " " + result[i].occurences.length + ":" + result[i].occurences.join(", "));
+		newListItem = document.createTextNode(result[i].word.toLowerCase() + " {" + result[i].occurences.length + ":" + result[i].occurences.join(", ") + "}");
 		addListItem.appendChild(newListItem);
 		olList.appendChild(addListItem);
 	}
@@ -75,7 +76,7 @@ wordCounter = (paragraph) => {
 
 submitBtn = () => {
 	document.getElementById("listOfWords").innerHTML = "";
-	let userParagraph = document.getElementById("para").value;
+	let userParagraph = document.getElementById("para").value.trim();
 	document.getElementById("submitBtn").addEventListener("click", wordCounter(userParagraph));
 }
 
