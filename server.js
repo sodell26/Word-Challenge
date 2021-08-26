@@ -56,7 +56,14 @@ wordCounter = (paragraph) => {
 	})
 	for (i=0; i<result.length; i++) { //final result
 
-		console.log(result[i].word + " " + result[i].occurences.length + ":" + result[i].occurences.join(", "))
+		// console.log(result[i].word + " " + result[i].occurences.length + ":" + result[i].occurences.join(", "))
+
+		let olList = document.getElementById("listOfWords");
+		addListItem = document.createElement("li");
+
+		newListItem = document.createTextNode(result[i].word + " " + result[i].occurences.length + ":" + result[i].occurences.join(", "));
+		addListItem.appendChild(newListItem);
+		olList.appendChild(addListItem);
 	}
 
 	// console.log(result);
@@ -67,15 +74,16 @@ wordCounter = (paragraph) => {
 
 
 submitBtn = () => {
-	let userParagraph = document.getElementById("para").value.trim();
+	let userParagraph = document.getElementById("para").value.trim().toLowerCase();
 	document.getElementById("submitBtn").addEventListener("click", wordCounter(userParagraph));
 }
 
 
 
 //to do
-//*add more puntuation
-
+//*add more punctuation
+//*first word of 2nd sentence is the first word in list for some reason
+//*clear if button is clicked again
 
 
 
