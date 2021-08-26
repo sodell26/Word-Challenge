@@ -74,6 +74,7 @@ wordCounter = (paragraph) => {
 
 
 submitBtn = () => {
+	document.getElementById("listOfWords").innerHTML = "";
 	let userParagraph = document.getElementById("para").value.trim().toLowerCase();
 	document.getElementById("submitBtn").addEventListener("click", wordCounter(userParagraph));
 }
