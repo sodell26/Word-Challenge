@@ -20,7 +20,7 @@ wordCounter = (orgParagraph) => {
 	}
 
 	for(i=0; i<sentenceArr.length; i++) { //removes in-sentence punctuation, so I'm left with words separated only by spaces
-		let currentString = sentenceArr[i].replace(/[:,]/g,'');
+		let currentString = sentenceArr[i].replace(/[^\w\s]/gi,'');
 		// console.log(currentString)
 		let arrOfWords = currentString.split(' '); //separate the word in string into an array, using space as delimiter
 		// console.log(arrOfWords) 
