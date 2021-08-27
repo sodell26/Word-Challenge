@@ -80,11 +80,16 @@ submitBtn = () => {
 	document.getElementById("submitBtn").addEventListener("click", wordCounter(userParagraph));
 }
 
+clearBtn = () => {
+	document.getElementById("listOfWords").innerHTML = "";
+	document.getElementById("para").value = "";
+}
+
 
 
 //to do
 //*add more punctuation
-//*first word of 2nd sentence is the first word in list for some reason
+//remove console comments
 
 
 
