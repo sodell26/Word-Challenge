@@ -4,12 +4,12 @@
 
 
 wordCounter = (orgParagraph) => {
-	let paragraph = orgParagraph.replace(/[\r\n]+/g,"");	
+	let paragraph = orgParagraph.replace(/[\r\n]+/g," ");	
 	let result = [];
 	let sentenceArr = [];
 	let sentenceStart = 0;
 	for(i=0; i<paragraph.length; i++) { //create array of sentences, each element will be a single  sentence
-		if(i == paragraph.length-1 || (paragraph[i] == "." && paragraph[i+1] == " " && paragraph[i+2] == paragraph[i+2].toUpperCase())){
+		if(i == paragraph.length-1 || ((paragraph[i] == "." || paragraph[i] == "?" || paragraph[i] == "!") && paragraph[i+1] == " " && paragraph[i+2] == paragraph[i+2].toUpperCase())){
 			//what will toUpperCase do with non-letters
 			//will need to deal with other sentence-ending punctuation (regex)
 			sentenceArr.push(paragraph.substring(sentenceStart, i))
